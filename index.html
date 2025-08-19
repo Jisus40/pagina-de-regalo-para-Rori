@@ -17,53 +17,73 @@
       --shadow: 0 10px 30px rgba(0,0,0,.35);
       --radius:16px;
     }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-  body{
-    margin:0;
-    color:var(--ink);
-    font:16px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    background-color: #1b1f2a; /* Fondo base oscuro pero no negro */
-    background-image: url('pngegg.png');
-    background-repeat: repeat;
-    background-size: 180px; /* Ajusta el tamaño del patrón según tu imagen */
-    animation: scroll-bg 40s linear infinite; /* Movimiento suave y lento */
-  }
 
-  @keyframes scroll-bg {
-    from { background-position: 0 0; }
-    to { background-position: 0 500px; } /* desplazamiento horizontal */
-  }
+    /* Base y ajustes de legibilidad global */
+    *{ box-sizing:border-box; }
+    *{ word-break: break-word; overflow-wrap: anywhere; }
+    html,body{ height:100%; }
+
+    body{
+      margin:0;
+      color:var(--ink);
+      font:16px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      background-color: #1b1f2a; /* Fondo base oscuro pero no negro */
+      background-image: url('pngegg.png');
+      background-repeat: repeat;
+      background-size: 180px; /* Ajusta el tamaño del patrón según tu imagen */
+      animation: scroll-bg 40s linear infinite; /* Movimiento suave y lento */
+    }
+
+    @keyframes scroll-bg {
+      from { background-position: 0 0; }
+      to { background-position: 0 500px; } /* desplazamiento vertical suave */
+    }
 
     header{
       padding:48px 20px 20px;
-      text-align:center;
-      display: flex;
-      justify-content: center;
+      display:flex;
+      justify-content:center;
     }
-      .headerContainer {
-          background-color: black;
-          width: 50%;
-          border-radius: 20px;
-          padding: 15px;
-      }  
+    .headerContainer {
+      background-color: #000;
+      width: min(900px, 90%);
+      border-radius: 20px;
+      padding: 16px 12px;
+    }
+
     .title{
-      font-size: clamp(28px, 4vw, 44px);
+      font-size: clamp(20px, 5vw, 44px);
+      word-break: break-word;
+      hyphens: auto;
+      line-height: 1.2;
+      text-align: center;
       letter-spacing:.5px;
-      margin: 10px;
+      margin:0 0 10px;
+      padding: 0 10px;
       background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent-2));
       -webkit-background-clip:text;
       background-clip:text;
       color: transparent;
       text-shadow: 0 0 20px rgba(255,139,209,.2);
     }
+
     .subtitle{
       color:var(--muted);
       margin:0 auto;
       max-width:800px;
+      text-align:center;
+      padding: 0 10px;
+      font-size: clamp(14px, 3.5vw, 18px);
     }
 
-    main{padding:20px; max-width:1100px; margin:0 auto 120px;}
+    @media (max-width: 480px) {
+      .title {
+        font-size: 22px;  /* tamaño fijo más pequeño en móviles muy estrechos */
+        padding: 0 8px;   /* margen interior para evitar que toque los bordes */
+      }
+    } /* ← IMPORTANTE: cerramos el media query para que el resto del CSS aplique también en PC */
+
+    main{ padding:20px; max-width:1100px; margin:0 auto 120px; }
 
     /* Hero: Link + Sobre */
     .hero{
@@ -88,10 +108,18 @@
     .card-inner{ padding:20px; background-color: black;}
 
     .hero-figure{
-      display:flex; align-items:center; gap:16px;
+      display:flex; align-items:center; gap:16px; flex-wrap:wrap;
     }
+
+    /* Imágenes fluidas */
+    img{ max-width:100%; height:auto; display:block; }
+
     .hero-figure img{
-      width:300px; height:300px; object-fit:cover; border-radius:20px;
+      width:100%;
+      max-width:300px;
+      aspect-ratio: 1/1;
+      object-fit:cover;
+      border-radius:20px;
       border:2px dashed rgba(255,255,255,.15);
       background: rgba(255,255,255,.03);
       box-shadow: 0 6px 20px rgba(0,0,0,.35);
@@ -101,9 +129,9 @@
     .hero-figure img:hover{ transform: translateY(-4px) rotate(-2deg) }
 
     .hero-text h2{
-      margin:0 0 6px; font-size:22px;
+      margin:0 0 6px; font-size:clamp(18px, 2.4vw, 22px);
     }
-    .hero-text p{ margin:0; color:var(--muted); }
+    .hero-text p{ margin:0; color:var(--muted); font-size:clamp(14px, 2vw, 16px); }
 
     /* Sobre clickable */
     .envelope-wrap{
@@ -143,10 +171,10 @@
     }
     .envelope:hover .env-flap{ transform: rotateX(25deg); }
 
-    .cta{ text-align:center; color:var(--muted); font-size:14px; margin-top:8px; }
+    .cta{ text-align:center; color:var(--muted); font-size:14px; margin-top:8px; white-space: normal; }
     .cta b{ color:var(--accent); font-weight:700; }
 
-    /* Franja de íconos kawaii */
+    /* Franja de íconos kawaii (opcional) */
     .icons{
       margin:36px 0 10px; overflow-x:auto; white-space:nowrap; padding:10px 6px;
       scrollbar-width: thin;
@@ -162,7 +190,7 @@
     .sticker:nth-child(even){ transform: rotate(2deg) }
     .sticker:hover{ transform: translateY(-6px) rotate(0deg) }
 
-    /* Galería chibi */
+    /* Galería chibi (opcional) */
     .gallery{
       display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-top:18px;
     }
@@ -177,11 +205,13 @@
       content:"Añade tu imagen chibi aquí";
       position:absolute; inset:0; display:grid; place-items:center;
       color:rgba(255,255,255,.6); font-size:14px; letter-spacing:.3px;
+      text-align:center; padding: 10px;
     }
     .tag{
       position:absolute; top:10px; left:10px; padding:6px 10px; font-size:12px;
       background: linear-gradient(90deg, #ff8bd1, #ffd166);
       color:#3a1940; border-radius:999px; font-weight:700; box-shadow: var(--shadow);
+      white-space: normal;
     }
 
     /* Modal de carta */
@@ -208,6 +238,7 @@
       position:absolute; top:10px; right:10px; border:none; background:#3b2b1c; color:#ffd166;
       padding:8px 10px; border-radius:10px; cursor:pointer; font-weight:700;
       box-shadow: 0 6px 18px rgba(0,0,0,.35);
+      white-space: nowrap;
     }
     .close:hover{ filter: brightness(1.1) }
 
@@ -223,10 +254,10 @@
 </head>
 <body>
   <header>
-   <div class="headerContainer">
-        <h1 class="title">Feliz cumpleaños ✨</h1>
-        <p class="subtitle">Espero que te guste</p>    
-   </div>
+    <div class="headerContainer">
+      <h1 class="title">Feliz cumpleaños ✨</h1>
+      <p class="subtitle">Espero que te guste</p>
+    </div>
   </header>
 
   <main>
@@ -262,12 +293,16 @@
   <!-- Modal de la carta -->
   <div class="modal" id="letterModal" aria-hidden="true" role="dialog" aria-label="Carta de cumpleaños">
     <div class="letter">
-      <button class="close" id="closeModal" aria-label="Cerrar carta">Cerrar ✕</button>
+      <button class="close" id="closeModal" aria-label="Cerrar carta">Cerrar ✖</button>
       <h3>Para ti</h3>
       <small>Con todo mi cariño</small>
       <div class="typed" id="typed"></div>
     </div>
   </div>
+
+  <footer>
+    <div class="pill">Hecho con <b>💖</b></div>
+  </footer>
 
   <script>
     // CONFIGURABLE: ruta de tu imagen de Link (estilo anime)
@@ -296,7 +331,7 @@ Feliz cumpleaños, pásala excelente, te mereces todo lo que quieres y mucho má
 
 Decir "te quiero" no es suficiente, por eso:
 
-Te amo, Rori, gracias por ser mi mejor amiga.💫
+Te amo, Rori, gracias por ser mi mejor amiga. 💗
 — [De parte del pendejo de Jisus]
 `;
 
@@ -337,20 +372,6 @@ Te amo, Rori, gracias por ser mi mejor amiga.💫
       if(e.target === modal) closeLetter();
     });
 
-    // Reemplaza placeholders de la galería con imágenes si quieres
-    // Ejemplo de cómo hacerlo por código (opcional):
-    // const galleryImages = ["chibi1.png","chibi2.png","chibi3.png"];
-    // document.querySelectorAll(".chibi").forEach((box, i) => {
-    //   if(galleryImages[i]){
-    //     box.style.background = `center/cover url(${galleryImages[i]})`;
-    //     box.style.border = "1px solid rgba(255,255,255,.06)";
-    //     box.style.boxShadow = "0 8px 30px rgba(0,0,0,.35)";
-    //     box.style.backdropFilter = "blur(0px)";
-    //     box.style.position = "relative";
-    //     box.style.overflow = "hidden";
-    //   }
-    // });
-
     // Pequeño detalle: abrir con Enter/Espacio cuando el sobre tiene foco
     btnOpen.addEventListener("keydown", (e) => {
       if(e.key === "Enter" || e.key === " "){ e.preventDefault(); openLetter(); }
@@ -358,4 +379,3 @@ Te amo, Rori, gracias por ser mi mejor amiga.💫
   </script>
 </body>
 </html>
-
