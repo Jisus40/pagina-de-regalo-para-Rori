@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Feliz cumpleaños — Anime Chibi</title>
+  <style>
+    :root{
+      --bg-1:#0b1020;
+      --bg-2:#151b34;
+      --ink:#e6e9ff;
+      --muted:#aab3cc;
+      --accent:#ff8bd1;   /* rosa neón */
+      --accent-2:#74c0fc; /* celeste */
+      --gold:#ffd166;     /* dorado cálido */
+      --card:#1f2747;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:16px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+  body{
+    margin:0;
+    color:var(--ink);
+    font:16px/1.55 Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    background-color: #1b1f2a; /* Fondo base oscuro pero no negro */
+    background-image: url('pngegg.png');
+    background-repeat: repeat;
+    background-size: 180px; /* Ajusta el tamaño del patrón según tu imagen */
+    animation: scroll-bg 40s linear infinite; /* Movimiento suave y lento */
+  }
+
+  @keyframes scroll-bg {
+    from { background-position: 0 0; }
+    to { background-position: 0 500px; } /* desplazamiento horizontal */
+  }
+
+    header{
+      padding:48px 20px 20px;
+      text-align:center;
+      display: flex;
+      justify-content: center;
+    }
+      .headerContainer {
+          background-color: black;
+          width: 50%;
+          border-radius: 20px;
+          padding: 15px;
+      }  
+    .title{
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing:.5px;
+      margin:0 0 10px;
+      background: linear-gradient(90deg, var(--accent), var(--gold), var(--accent-2));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+      text-shadow: 0 0 20px rgba(255,139,209,.2);
+    }
+    .subtitle{
+      color:var(--muted);
+      margin:0 auto;
+      max-width:800px;
+    }
+
+    main{padding:20px; max-width:1100px; margin:0 auto 120px;}
+
+    /* Hero: Link + Sobre */
+    .hero{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:24px;
+      align-items:center;
+      margin-top:30px;
+    }
+    @media (max-width:900px){
+      .hero{ grid-template-columns: 1fr; }
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card-inner{ padding:20px; background-color: black;}
+
+    .hero-figure{
+      display:flex; align-items:center; gap:16px;
+    }
+    .hero-figure img{
+      width:300px; height:300px; object-fit:cover; border-radius:20px;
+      border:2px dashed rgba(255,255,255,.15);
+      background: rgba(255,255,255,.03);
+      box-shadow: 0 6px 20px rgba(0,0,0,.35);
+      transition: transform .2s ease;
+      cursor:pointer;
+    }
+    .hero-figure img:hover{ transform: translateY(-4px) rotate(-2deg) }
+
+    .hero-text h2{
+      margin:0 0 6px; font-size:22px;
+    }
+    .hero-text p{ margin:0; color:var(--muted); }
+
+    /* Sobre clickable */
+    .envelope-wrap{
+      display:flex; align-items:center; justify-content:center;
+      padding:24px 10px 14px;
+    }
+    .envelope{
+      width:240px; height:160px; position:relative; border:none; background:transparent; cursor:pointer;
+      filter: drop-shadow(0 12px 24px rgba(0,0,0,.35));
+      animation: floaty 4s ease-in-out infinite;
+    }
+    @keyframes floaty{
+      0%,100%{ transform: translateY(0) }
+      50%{ transform: translateY(-8px) }
+    }
+    .env-body{
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, #fdf2f9, #ffd7f0);
+      border-radius: 10px;
+      border:2px solid #ffc0e6;
+    }
+    .env-flap{
+      position:absolute; top:0; left:0; right:0; height:50%;
+      background: linear-gradient(180deg, #ffe6f4, #ffc6e8);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      border-top-left-radius: 10px; border-top-right-radius:10px;
+      border:2px solid #ffc0e6; border-bottom:none;
+      transform-origin: top center;
+      transition: transform .5s ease;
+    }
+    .seal{
+      position:absolute; top:50%; left:50%; transform: translate(-50%,-10%);
+      width:46px; height:46px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, #ffb3da, #ff7cc6);
+      border:2px solid #ff3fa9;
+      box-shadow: inset 0 2px 6px rgba(0,0,0,.25);
+    }
+    .envelope:hover .env-flap{ transform: rotateX(25deg); }
+
+    .cta{ text-align:center; color:var(--muted); font-size:14px; margin-top:8px; }
+    .cta b{ color:var(--accent); font-weight:700; }
+
+    /* Franja de íconos kawaii */
+    .icons{
+      margin:36px 0 10px; overflow-x:auto; white-space:nowrap; padding:10px 6px;
+      scrollbar-width: thin;
+    }
+    .sticker{
+      display:inline-flex; align-items:center; justify-content:center;
+      width:56px; height:56px; margin:0 8px; font-size:30px;
+      background: #202853; border:1px solid rgba(255,255,255,.09);
+      border-radius: 14px; box-shadow: var(--shadow);
+      transform: rotate(-3deg);
+      transition: transform .15s ease;
+    }
+    .sticker:nth-child(even){ transform: rotate(2deg) }
+    .sticker:hover{ transform: translateY(-6px) rotate(0deg) }
+
+    /* Galería chibi */
+    .gallery{
+      display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-top:18px;
+    }
+    @media (max-width:900px){ .gallery{ grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width:560px){ .gallery{ grid-template-columns: 1fr; } }
+
+    .chibi{
+      aspect-ratio: 1 / 1; background: #1a2244; border:1px dashed rgba(255,255,255,.12);
+      border-radius: 18px; position:relative; overflow:hidden;
+    }
+    .chibi::after{
+      content:"Añade tu imagen chibi aquí";
+      position:absolute; inset:0; display:grid; place-items:center;
+      color:rgba(255,255,255,.6); font-size:14px; letter-spacing:.3px;
+    }
+    .tag{
+      position:absolute; top:10px; left:10px; padding:6px 10px; font-size:12px;
+      background: linear-gradient(90deg, #ff8bd1, #ffd166);
+      color:#3a1940; border-radius:999px; font-weight:700; box-shadow: var(--shadow);
+    }
+
+    /* Modal de carta */
+    .modal{
+      position: fixed; inset:0; display:none; place-items:center; padding:20px;
+      background: rgba(5,7,15,.65); backdrop-filter: blur(6px);
+      z-index:999;
+    }
+    .modal.open{ display:grid; }
+    .letter{
+      width:min(720px, 96vw); max-height:80vh; overflow:auto;
+      background: linear-gradient(180deg, #fff9ef, #ffe9bf);
+      color:#3d2f1d; border-radius: 16px; border:2px solid #f6d58f;
+      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+      padding:24px 22px 18px; position:relative;
+    }
+    .letter h3{ margin:0 0 6px; font-family: "Georgia", serif; }
+    .letter small{ color:#6e5b3c }
+    .typed{
+      margin-top:14px; white-space:pre-wrap; font-size:17px; line-height:1.7;
+      border-top:1px dashed #e7c681; padding-top:14px;
+    }
+    .close{
+      position:absolute; top:10px; right:10px; border:none; background:#3b2b1c; color:#ffd166;
+      padding:8px 10px; border-radius:10px; cursor:pointer; font-weight:700;
+      box-shadow: 0 6px 18px rgba(0,0,0,.35);
+    }
+    .close:hover{ filter: brightness(1.1) }
+
+    footer{
+      position:fixed; bottom:10px; left:0; right:0; text-align:center; color:var(--muted); font-size:12px;
+      pointer-events:none;
+    }
+    .pill{
+      display:inline-block; padding:8px 12px; border-radius:999px; background: rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.1)
+    }
+    .pill b{ color:var(--accent-2) }
+  </style>
+</head>
+<body>
+  <header>
+   <div class="headerContainer">
+        <h1 class="title">Feliz cumpleaños ✨</h1>
+        <p class="subtitle">Espero que te guste</p>    
+   </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <!-- Columna: Link estilo anime + texto -->
+      <article class="card">
+        <div class="card-inner hero-figure">
+          <!-- Sube tu imagen de Link (estilo anime) y reemplaza el src -->
+          <img id="linkHero" src="pngegg2.png" alt="Héroe estilo anime invitando a leer una carta" title="Haz clic para abrir la carta" />
+          <div class="hero-text">
+            <h2>Hay un mensaje para ti</h2>
+            <p>Abre la carta para descubrirlo.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Columna: Sobre clickable -->
+      <article class="card">
+        <div class="card-inner">
+          <div class="envelope-wrap">
+            <button class="envelope" id="openEnvelope" aria-label="Abrir carta">
+              <div class="env-body"></div>
+              <div class="env-flap"></div>
+              <div class="seal"></div>
+            </button>
+          </div>
+          <div class="cta">Haz clic en el <b>sobre</b> para abrir la carta</div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <!-- Modal de la carta -->
+  <div class="modal" id="letterModal" aria-hidden="true" role="dialog" aria-label="Carta de cumpleaños">
+    <div class="letter">
+      <button class="close" id="closeModal" aria-label="Cerrar carta">Cerrar ✕</button>
+      <h3>Para ti</h3>
+      <small>Con todo mi cariño</small>
+      <div class="typed" id="typed"></div>
+    </div>
+  </div>
+
+  <script>
+    // CONFIGURABLE: ruta de tu imagen de Link (estilo anime)
+    // Coloca el archivo en la misma carpeta (ej: "link-anime.png") o usa una URL que tengas permiso de usar.
+    const LINK_IMAGE_SRC = "pngegg2.png"; // Reemplaza por tu imagen
+    const linkEl = document.getElementById("linkHero");
+    linkEl.src = LINK_IMAGE_SRC;
+
+    // CONFIGURABLE: texto de la carta (puedes editar libremente)
+    const sampleLetter = `
+Hola, Rori, ¿cómo estás?
+
+Primero, quiero desearte feliz cumpleaños número 17, ya estamos viejos, ¿no? Jaja.
+
+Rori, sé que hace tiempo no estamos juntos y que no te escribo muy seguido, pero quiero que sepas que, sin importar cuánto tiempo pase, tú eres y siempre serás mi mejor amiga.
+
+Tú fuiste la primera persona en toda mi vida con la que me sentí cómodo. En el colegio, cada vez que estaba contigo me sentía normal, disfruté cada momento que pasé contigo, me hiciste ver que incluso alguien como yo puede tener amigos.
+
+Sé que no lo digo muy seguido, pero no tienes idea de lo importante que eres para mí. Tú me diste una perspectiva diferente de este mundo y fue gracias a ti que hoy soy quien soy. También eres la razón por la que tengo muchos amigos, porque sin ti no podría valorar la amistad verdadera, y por eso te doy gracias.
+
+Lamento todas las veces que fui un mal amigo y no estuve cuando me necesitabas. Esa es la razón principal por la que decidí cambiar y, gracias a Dios, tú me diste una segunda oportunidad, o no sé si sea tercera o cuarta, jaja, pero te aseguro que no pienso perder nuestra amistad otra vez, no lo permitiré, te lo juro.
+
+Creo que esta carta ya es muy larga y, aunque me gustaría seguir, sé que tardarías horas en leerla y yo en escribirla, así que voy a terminarla diciendo una cosa:
+
+Feliz cumpleaños, pásala excelente, te mereces todo lo que quieres y mucho más, nunca lo dudes, y si algún día necesitas recordarlo, yo estaré aquí para ayudarte.
+
+Decir "te quiero" no es suficiente, por eso:
+
+Te amo, Rori, gracias por ser mi mejor amiga.💫
+— [De parte del pendejo de Jisus]
+`;
+
+    // Efecto máquina de escribir
+    const typedEl = document.getElementById("typed");
+    let typingTimer = null;
+    function typeText(text, speed = 18){
+      typedEl.textContent = "";
+      let i = 0;
+      clearInterval(typingTimer);
+      typingTimer = setInterval(() => {
+        typedEl.textContent += text.charAt(i);
+        i++;
+        if(i >= text.length) clearInterval(typingTimer);
+      }, speed);
+    }
+
+    // Modal open/close
+    const modal = document.getElementById("letterModal");
+    const btnOpen = document.getElementById("openEnvelope");
+    const btnClose = document.getElementById("closeModal");
+
+    function openLetter(){
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden","false");
+      typeText(sampleLetter);
+    }
+    function closeLetter(){
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden","true");
+      clearInterval(typingTimer);
+    }
+
+    btnOpen.addEventListener("click", openLetter);
+    btnClose.addEventListener("click", closeLetter);
+    linkEl.addEventListener("click", openLetter);
+    modal.addEventListener("click", (e) => {
+      if(e.target === modal) closeLetter();
+    });
+
+    // Reemplaza placeholders de la galería con imágenes si quieres
+    // Ejemplo de cómo hacerlo por código (opcional):
+    // const galleryImages = ["chibi1.png","chibi2.png","chibi3.png"];
+    // document.querySelectorAll(".chibi").forEach((box, i) => {
+    //   if(galleryImages[i]){
+    //     box.style.background = `center/cover url(${galleryImages[i]})`;
+    //     box.style.border = "1px solid rgba(255,255,255,.06)";
+    //     box.style.boxShadow = "0 8px 30px rgba(0,0,0,.35)";
+    //     box.style.backdropFilter = "blur(0px)";
+    //     box.style.position = "relative";
+    //     box.style.overflow = "hidden";
+    //   }
+    // });
+
+    // Pequeño detalle: abrir con Enter/Espacio cuando el sobre tiene foco
+    btnOpen.addEventListener("keydown", (e) => {
+      if(e.key === "Enter" || e.key === " "){ e.preventDefault(); openLetter(); }
+    });
+  </script>
+</body>
+</html>
